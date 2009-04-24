@@ -2,7 +2,7 @@
 <syntax name="sourcecode.haskell">
 
     <zones>
-        <include collection="toplevel" />
+        <!-- <include collection="toplevel" /> -->
         <include collection="base" />
         <include collection="fallback" />
     </zones>
@@ -201,29 +201,6 @@
                 <capture number="2" name="identifier.module" />
             </zone>
         </collection>
-        <collection name="type-constraints">
-            <zone name="container.declaration.type.constraints">
-                <starts-with>
-                    <expression>(?&lt;=\b([a-z]+)\s+)\(</expression>
-                    <capture number="0" name="delimiter.balanced.constraints.begin" />
-                </starts-with>
-                <ends-with>
-                    <expression>\)</expression>
-                    <capture number="0" name="delimiter.balanced.constraints.end" />
-                </ends-with>
-                <subzones>
-                    <zone name="delimiter.separator.constraint">
-                        <expression>,</expression>
-                    </zone>
-                    <zone name="container.declaration.constraint">
-                        <expression>\b([A-Z][A-Za-z_0-9'\.]*)(?:\s+([a-z_][A-Za-z_0-9']*))*</expression>
-                        <capture number="1" name="identifier.type.constraint" />
-                        <capture number="2" name="identifier.variable.type" />
-                    </zone>
-                    <include collection="base" />
-                </subzones>
-            </zone>
-        </collection>
         <collection name="type-decl">
             <zone name="container.definition.type.alias">
                 <starts-with>
@@ -239,71 +216,43 @@
                     <include collection="base" />
                 </subzones>
             </zone>
-            <zone name="container.definition.type.multiple-constraints">
+            <zone name="container.definition.type">
                 <starts-with>
-                    <expression>^(\s*)(data|newtype)\s+(?=\()</expression>
+                    <expression>^(\s*)(data|newtype)\b</expression>
                     <capture number="2" name="keyword.definition.type" />
                 </starts-with>
                 <ends-with>
                     <expression>^(?!\1\s+)</expression>
                 </ends-with>
                 <subzones>
+                    <include collection="type-def-body" />
+                    <include collection="constrained-type-def" />
                     <include collection="type-constraints" />
-                    <zone name="container.declaration.type.constrained">
-                        <starts-with>
-                            <expression>=></expression>
-                            <capture number="0" name="operator.type.constraints" />
-                        </starts-with>
-                        <ends-with>
-                            <expression>=</expression>
-                            <capture number="0" name="operator.definition.type" />
-                        </ends-with>
-                        <subzones>
-                            <zone name="container.definition.type.constrained">
-                                <expression>\b([A-Z][A-Za-z_0-9']*)(?:\s+([a-z_][A-Za-z_0-9']*))*</expression>
-                                <capture number="1" name="identifier.type" />
-                                <capture number="2" name="identifier.variable.type" />
-                            </zone>
-                            <include collection="base" />
-                        </subzones>
-                    </zone>
-                    <include collection="base" />
-                </subzones>
-            </zone>
-            <zone name="container.definition.type.single-constraint">
-                <starts-with>
-                    <expression>^(\s*)(data|newtype)\s+([A-Z][A-Za-z_0-9']*)(?:\s+([a-z_][A-Za-z_0-9']*))*\s+(=>)\s+([A-Z][A-Za-z_0-9']*)(?:\s+([a-z_][A-Za-z_0-9']*))*</expression>
-                    <capture number="2" name="keyword.definition.type" />
-                    <capture number="3" name="identifier.type.constraint" />
-                    <capture number="4" name="identifier.variable.type" />
-                    <capture number="5" name="operator.type.constraint" />
-                    <capture number="6" name="identifier.type" />
-                    <capture number="7" name="identifier.variable.type" />
-                </starts-with>
-                <ends-with>
-                    <expression>^(?!\1\s+)</expression>
-                </ends-with>
-                <subzones>
-                    <include collection="base" />
-                </subzones>
-            </zone>
-            <zone name="container.definition.type.simple">
-                <starts-with>
-                    <expression>^(\s*)(data|newtype)\s+([A-Z][A-Za-z_0-9']*)(?:\s+([a-z_][A-Za-z_0-9']*))*</expression>
-                    <capture number="2" name="keyword.definition.type" />
-                    <capture number="3" name="identifier.type" />
-                    <capture number="4" name="identifier.variable.type" />
-                </starts-with>
-                <ends-with>
-                    <expression>^(?!\1\s+)</expression>
-                </ends-with>
-                <subzones>
+                    <include collection="unconstrained-type-def" />
                     <include collection="base" />
                 </subzones>
             </zone>
         </collection>
         <collection name="class-decl">
-            <zone name="container.definition.type.class.multiple-constraints">
+            <zone name="container.definition.type.class">
+                <starts-with>
+                    <expression>^(\s*)(class)\b</expression>
+                    <capture number="2" name="keyword.definition.type.class" />
+                </starts-with>
+                <ends-with>
+                    <expression>^(?!\1\s+)</expression>
+                </ends-with>
+                <subzones>
+                    <include collection="constrained-type" />
+                    <include collection="type-constraints" />
+                    <include collection="unconstrained-type" />
+                    <include collection="base" />
+                </subzones>
+            </zone>
+            <!--
+                TODO This is close but doesn't work right. will wither swallow everything after a class without a where, or end data definitions on newline. Drat.
+            -->
+            <!-- <zone name="container.definition.type.class.multiple-constraints">
                 <starts-with>
                     <expression>^(\s*)(class)\s+(?=\()</expression>
                     <capture number="2" name="keyword.definition.type.class" />
@@ -323,11 +272,7 @@
                             <capture number="1" name="keyword.control" />
                         </ends-with>
                         <subzones>
-                            <zone name="container.definition.type.constrained">
-                                <expression>\b([A-Z][A-Za-z_0-9']*)(?:\s+([a-z_][A-Za-z_0-9']*))*</expression>
-                                <capture number="1" name="identifier.type.class" />
-                                <capture number="2" name="identifier.variable.type" />
-                            </zone>
+                            <include collection="types" />
                             <include collection="base" />
                         </subzones>
                     </zone>
@@ -364,9 +309,12 @@
                 <subzones>
                     <include collection="base" />
                 </subzones>
-            </zone>
+            </zone> -->
         </collection>
         <collection name="instance-decl">
+            <!--
+                TODO Qualified type-classes and parenthesized type expressions are allowed in instances
+            -->
             <zone name="container.declaration.type.instance.multiple-constraints">
                 <starts-with>
                     <expression>^(\s*)(instance)\s+(?=\()</expression>
@@ -387,11 +335,7 @@
                             <capture number="1" name="keyword.control" />
                         </ends-with>
                         <subzones>
-                            <zone name="container.definition.type.constrained">
-                                <expression>\b([A-Z][A-Za-z_0-9']*)(?:\s+([A-Z][A-Za-z_0-9'\.]*))*</expression>
-                                <capture number="1" name="identifier.type.instance" />
-                                <capture number="2" name="identifier.variable.type" />
-                            </zone>
+                            <include collection="types" />
                             <include collection="base" />
                         </subzones>
                     </zone>
@@ -432,6 +376,10 @@
             </zone>
         </collection>
         <collection name="gen-decl">
+            <!--
+                TODO Should be available at the base level.
+                TODO Should also parse function definition.
+            -->
             <zone name="container.declaration.fixity">
                 <expression>^(\s*)(infix[rl]?)\s+(.*)$\n?</expression>
                 <capture number="2" name="keyword.modifier.fixity" />
@@ -484,6 +432,128 @@
                 </subzones>
             </zone>
         </collection>
+        <collection name="type-constraints">
+            <zone name="container.declaration.type.constraints">
+                <starts-with>
+                    <expression>(?&lt;=data|newtype|::)\s+(\()</expression>
+                    <capture number="1" name="delimiter.balanced.constraints.begin" />
+                </starts-with>
+                <ends-with>
+                    <expression>(\))\s+</expression>
+                    <capture number="1" name="delimiter.balanced.constraints.end" />
+                </ends-with>
+                <subzones>
+                    <zone name="delimiter.separator.constraint">
+                        <expression>,</expression>
+                    </zone>
+                    <include collection="type-constraint" />
+                    <include collection="base" />
+                </subzones>
+            </zone>
+            <zone name="container.declaration.type.constraint">
+                <starts-with>
+                    <expression>(?&lt;=data|newtype|::)(?=[^=]+=>)</expression>
+                </starts-with>
+                <ends-with>
+                    <expression>(?==>)</expression>
+                </ends-with>
+                <subzones>
+                    <include collection="type-constraint" />
+                    <include collection="base" />
+                </subzones>
+            </zone>
+        </collection>
+        <collection name="type-constraint">
+            <zone name="identifier.type.constraint">
+                <expression>\b([A-Z][A-Za-z_0-9'\.]*)</expression>
+            </zone>
+            <zone name="identifier.variable.type">
+                <expression>\b([a-z_][A-Za-z_0-9']*)</expression>
+            </zone>
+        </collection>
+        <collection name="constrained-type">
+            <zone name="container.declaration.type.constrained">
+                <starts-with>
+                    <expression>=></expression>
+                    <capture number="0" name="operator.type.constraints" />
+                </starts-with>
+                <ends-with>
+                    <expression>\b(where)\b|$</expression>
+                    <capture number="1" name="keyword.control.type" />
+                </ends-with>
+                <subzones>
+                    <include collection="types" />
+                    <include collection="base" />
+                </subzones>
+            </zone>
+        </collection>
+        <collection name="constrained-type-def">
+            <zone name="container.definition.type.constrained">
+                <starts-with>
+                    <expression>=></expression>
+                    <capture number="0" name="operator.type.constraints" />
+                </starts-with>
+                <ends-with>
+                    <expression>=</expression>
+                    <capture number="0" name="operator.definition.type" />
+                </ends-with>
+                <subzones>
+                    <include collection="types" />
+                    <include collection="base" />
+                </subzones>
+            </zone>
+        </collection>
+        <collection name="unconstrained-type">
+            <zone name="container.declaration.type.unconstrained">
+                <starts-with>
+                    <expression>(?&lt;=class|::)(?![^=]+=>)</expression>
+                </starts-with>
+                <ends-with>
+                    <expression>\b(where)\b|$</expression>
+                    <capture number="1" name="keyword.control.type" />
+                </ends-with>
+                <subzones>
+                    <include collection="types" />
+                    <include collection="base" />
+                </subzones>
+            </zone>
+        </collection>
+        <collection name="unconstrained-type-def">
+            <zone name="container.definition.type.unconstrained">
+                <starts-with>
+                    <expression>(?&lt;=data|newtype|::)(?![^=]+=>)</expression>
+                </starts-with>
+                <ends-with>
+                    <expression>=</expression>
+                    <capture number="0" name="operator.definition.type" />
+                </ends-with>
+                <subzones>
+                    <include collection="types" />
+                    <include collection="base" />
+                </subzones>
+            </zone>
+        </collection>
+        <collection name="type-def-body">
+            <zone name="container.definition.type.body">
+                <starts-with>
+                    <expression>(?&lt;==)</expression>
+                </starts-with>
+                <ends-with>
+                    <expression>$</expression>
+                </ends-with>
+                <subzones>
+                    <include collection="base" />
+                </subzones>
+            </zone>
+        </collection>
+        <collection name="types">
+            <zone name="identifier.type">
+                <expression>\b([A-Z][A-Za-z_0-9']*)</expression>
+            </zone>
+            <zone name="identifier.variable.type">
+                <expression>\b([a-z_][A-Za-z_0-9']*)</expression>
+            </zone>
+        </collection>
         <collection name="base">
             <include collection="comment" />
             <include collection="literal" />
@@ -491,10 +561,10 @@
             <include collection="support" />
         </collection>
         <collection name="literal">
-            <include name="number" />
-            <include name="char" />
-            <include name="string" />
-            <include name="composite" />
+            <include collection="number" />
+            <include collection="char" />
+            <include collection="string" />
+            <include collection="composite" />
         </collection>
         <collection name="number">
             <zone name="literal.numeric.integer.hex">
