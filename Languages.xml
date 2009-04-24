@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<settings>
+
+    <language id="org.purl.net.mkhl.haskell">
+
+        <name>Haskell</name>
+
+        <root-zone>sourcecode.haskell</root-zone>
+
+        <detectors>
+            <extension>hs</extension>
+            <match-content lines="2">^#!.*[/\s]run(haskell|hugs|ghci?)([/\s]|$)</match-content>
+            <match-content lines="2">^.*(-\*-).*\s(mode:)\s*(haskell)\s.*(-\*-)\s*$</match-content>
+        </detectors>
+
+    </language>
+
+    <meta>
+        <name>Haskell</name>
+        <description>A Sugar adding sweet Haskell support for Espresso</description>
+        <author>Martin Kühl</author>
+        <identifier>org.purl.net.mkhl.haskell</identifier>
+        <url>http://github.com/mkhl/haskell.sugar</url>
+        <version status="preview">0</version>
+        <download format="git">git://github.com/mkhl/haskell.sugar.git</download>
+    </meta>
+
+</settings>
