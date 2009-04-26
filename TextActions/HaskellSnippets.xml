@@ -14,13 +14,23 @@
     - type
     - newtype
     - data
-    - module
     - import
 -->
     <snippet id="org.purl.net.mkhl.haskell.snippets.shebang" category="tools.Snippets">
         <title>#!…</title>
         <text><![CDATA[#!/usr/bin/env ${1:runhaskell}]]></text>
         <text-trigger>#!</text-trigger>
+        <syntax-context>haskell, haskell *</syntax-context>
+    </snippet>
+
+    <snippet id="org.purl.net.mkhl.haskell.snippets.module" category="tools.Snippets">
+        <title>module</title>
+        <text><![CDATA[module ${1:Main} ${2/.+/(
+	/}${2:main}${2/.+/
+) /}where
+
+${0:definitions}]]></text>
+        <text-trigger>mod</text-trigger>
         <syntax-context>haskell, haskell *</syntax-context>
     </snippet>
 
