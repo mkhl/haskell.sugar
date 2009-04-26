@@ -8,43 +8,72 @@
 
     <library>
         <collection name="comment">
-            <zone name="metadata.processing">
-                <expression>^\s*(#).*($)\n?</expression>
-                <capture number="1" name="delimiter.processing.begin" />
-                <capture number="2" name="delimiter.processing.end" />
+            <zone name="metadata.processing.preprocessor">
+                <expression>^\s*(#).*$\n?</expression>
+                <capture number="1" name="delimiter.other.preprocessor" />
             </zone>
             <zone name="metadata.processing.comment">
                 <starts-with>
                     <expression>\{-#</expression>
-                    <capture number="0" name="delimiter.processing.begin" />
+                    <capture number="0" name="delimiter.balanced.processing.begin" />
                 </starts-with>
                 <ends-with>
                     <expression>#-\}</expression>
-                    <capture number="0" name="delimiter.processing.end" />
+                    <capture number="0" name="delimiter.balanced.processing.end" />
                 </ends-with>
                 <subzones>
-                    <zone name="keyword.processing">
+                    <zone name="keyword.other.processing">
                         <expression>\b(LANGUAGE|UNPACK|INLINE)\b</expression>
                     </zone>
                 </subzones>
             </zone>
-            <zone name="metadata.comment.block">
+            <zone name="metadata.comment.documentation.block">
                 <starts-with>
-                    <expression>\{-</expression>
-                    <capture number="0" name="delimiter.comment.begin" />
+                    <expression>\{-\|</expression>
+                    <capture number="0" name="delimiter.balanced.haddock.begin" />
                 </starts-with>
                 <ends-with>
                     <expression>-\}</expression>
-                    <capture number="0" name="delimiter.comment.end" />
+                    <capture number="0" name="delimiter.balanced.haddock.end" />
                 </ends-with>
                 <subzones>
                     <include collection="comment-contents" />
                 </subzones>
             </zone>
+            <zone name="metadata.comment.block">
+                <starts-with>
+                    <expression>\{-</expression>
+                    <capture number="0" name="delimiter.balanced.comment.begin" />
+                </starts-with>
+                <ends-with>
+                    <expression>-\}</expression>
+                    <capture number="0" name="delimiter.balanced.comment.end" />
+                </ends-with>
+                <subzones>
+                    <include collection="comment-contents" />
+                </subzones>
+            </zone>
+            <zone name="metadata.comment.documentation.line.prefix">
+                <starts-with>
+                    <expression>-{2}\|</expression>
+                    <capture number="0" name="delimiter.other.haddock" />
+                </starts-with>
+                <ends-with>
+                    <expression>^(?!\s*-{2})</expression>
+                </ends-with>
+            </zone>
+            <zone name="metadata.comment.documentation.line.postfix">
+                <starts-with>
+                    <expression>-{2}\^</expression>
+                    <capture number="0" name="delimiter.other.haddock" />
+                </starts-with>
+                <ends-with>
+                    <expression>^(?!\s*-{2})</expression>
+                </ends-with>
+            </zone>
             <zone name="metadata.comment.line">
-                <expression>(-{2,}).*($)\n?</expression>
-                <capture number="1" name="delimiter.comment.begin" />
-                <capture number="2" name="delimiter.comment.end" />
+                <expression>(-{2,}).*$\n?</expression>
+                <capture number="1" name="delimiter.other.comment" />
             </zone>
         </collection>
         <collection name="comment-contents">
