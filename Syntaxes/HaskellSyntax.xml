@@ -98,7 +98,7 @@
             <include collection="fixity" />
         </collection>
         <collection name="module">
-            <zone name="container.definition.module">
+            <zone name="container.module">
                 <starts-with>
                     <expression>^\s*(module)\s+([A-Z][A-Za-z_0-9'\.]*)</expression>
                     <capture number="1" name="keyword.definition.module" />
@@ -106,7 +106,9 @@
                 </starts-with>
                 <ends-with>
                     <!-- Never ends; the rest of the file belongs to this module. -->
-                    <expression>^(?&lt;!^)</expression>
+                    <!-- <expression>^(?&lt;!^)</expression> -->
+                    <!-- Let's pretend to end when we declare another module. -->
+                    <expression>^(?=module\b)</expression>
                 </ends-with>
                 <subzones>
                     <include collection="toplevel" />
