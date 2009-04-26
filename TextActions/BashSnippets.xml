@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<action-recipes>
+
+<!--
+    TODO:
+    - guard
+    - typedecl
+    - bind
+    - lambda
+    - typedecl-func
+    - typedecl-class
+    - class
+    - instance
+    - type
+    - newtype
+    - data
+    - module
+-->
+    <snippet id="org.purl.net.mkhl.haskell.snippets.shebang" category="tools.Snippets">
+        <title>#!…</title>
+        <!-- <text><![CDATA[#!/usr/bin/env ${1:${E_ROOT_ZONE/(?:source(?:code)?|.*)\.(?:(haskell)|(\w+)).*/(?1:bash:$2)/}}
+]]></text> -->
+        <text><![CDATA[#!/usr/bin/env ${1:runhaskell}]]></text>
+        <text-trigger>#!</text-trigger>
+        <syntax-context>haskell, haskell *</syntax-context>
+    </snippet>
+
+    <snippet id="org.purl.net.mkhl.haskell.snippets.if-block" category="tools.Snippets">
+        <title>if block</title>
+        <text><![CDATA[if ${1:condition}
+	then ${2:expression}
+	else ${0:expression}]]></text>
+        <text-trigger>if</text-trigger>
+        <syntax-context>haskell, haskell *</syntax-context>
+    </snippet>
+
+    <snippet id="org.purl.net.mkhl.haskell.snippets.case-block" category="tools.Snippets">
+        <title>case block</title>
+        <text><![CDATA[case ${1:expression} in
+	${2:pattern} -> ${3:expression}
+	${4:otherwise} -> ${0:expression}]]></text>
+        <text-trigger>case</text-trigger>
+        <syntax-context>haskell, haskell *</syntax-context>
+    </snippet>
+
+    <snippet id="org.purl.net.mkhl.haskell.snippets.let-block" category="tools.Snippets">
+        <title>let block</title>
+        <text><![CDATA[let
+		${1:x} = ${2:expression}
+	in ${0:expression}]]></text>
+        <text-trigger>let</text-trigger>
+        <syntax-context>haskell, haskell *</syntax-context>
+    </snippet>
+
+    <snippet id="org.purl.net.mkhl.haskell.snippets.where-block" category="tools.Snippets">
+        <title>where block</title>
+        <text><![CDATA[where
+	${1:x} = ${0:expression}]]></text>
+        <text-trigger>where</text-trigger>
+        <syntax-context>haskell, haskell *</syntax-context>
+    </snippet>
+
+    <snippet id="org.purl.net.mkhl.haskell.snippets.do-block" category="tools.Snippets">
+        <title>do block</title>
+        <text><![CDATA[do
+	${1:return ${0:expression}}]]></text>
+        <text-trigger>do</text-trigger>
+        <syntax-context>haskell, haskell *</syntax-context>
+    </snippet>
+
+</action-recipes>
