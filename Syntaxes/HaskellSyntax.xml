@@ -117,17 +117,16 @@
             </zone>
         </collection>
         <collection name="import">
-            <zone name="container.declaration.import">
+            <zone name="container.statement.import">
                 <starts-with>
                     <expression>^\s*(import)\b</expression>
-                    <capture number="1" name="keyword.definition.import" />
+                    <capture number="1" name="keyword.control.import" />
                 </starts-with>
                 <ends-with>
                     <expression>($|;)</expression>
                     <capture number="1" name="delimiter.terminator.import" />
                 </ends-with>
                 <subzones>
-                    <include collection="comment" />
                     <zone name="keyword.modifier.import">
                         <expression>\b(qualified|as|hiding)\b</expression>
                     </zone>
@@ -142,7 +141,7 @@
                     <capture number="2" name="keyword.definition.type" />
                 </starts-with>
                 <ends-with>
-                    <expression>^(?!\1\s+)</expression>
+                    <expression>^(?:$|(?!\1\s+))</expression>
                 </ends-with>
                 <subzones>
                     <include collection="base" />
@@ -156,7 +155,7 @@
                     <capture number="2" name="keyword.definition.type.class" />
                 </starts-with>
                 <ends-with>
-                    <expression>^(?!\1\s+)</expression>
+                    <expression>^(?:$|(?!\1\s+))</expression>
                 </ends-with>
                 <subzones>
                     <include collection="base" />
@@ -170,7 +169,7 @@
                     <capture number="2" name="keyword.definition.type.instance" />
                 </starts-with>
                 <ends-with>
-                    <expression>^(?!\1\s+)</expression>
+                    <expression>^(?:$|(?!\1\s+))</expression>
                 </ends-with>
                 <subzones>
                     <include collection="base" />
