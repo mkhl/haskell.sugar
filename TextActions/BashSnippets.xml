@@ -15,11 +15,10 @@
     - newtype
     - data
     - module
+    - import
 -->
     <snippet id="org.purl.net.mkhl.haskell.snippets.shebang" category="tools.Snippets">
         <title>#!…</title>
-        <!-- <text><![CDATA[#!/usr/bin/env ${1:${E_ROOT_ZONE/(?:source(?:code)?|.*)\.(?:(haskell)|(\w+)).*/(?1:bash:$2)/}}
-]]></text> -->
         <text><![CDATA[#!/usr/bin/env ${1:runhaskell}]]></text>
         <text-trigger>#!</text-trigger>
         <syntax-context>haskell, haskell *</syntax-context>
