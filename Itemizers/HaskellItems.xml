@@ -7,8 +7,8 @@
     </recipe>
 
     <recipe name="org.purl.net.mkhl.haskell.itemizers.module">
-        <class>ESBaseItem</class>
-        <selector>container.definition.module:has-child(module.identifier:capture(name))</selector>
+        <class>ESCodeBlockItem</class>
+        <selector>container.module:has-child(identifier.module:capture(name))</selector>
         <subrecipes>
             <include-root-recipes/>
         </subrecipes>
@@ -16,7 +16,15 @@
 
     <recipe name="org.purl.net.mkhl.haskell.itemizers.function">
         <class>ESBaseItem</class>
-        <selector>container.definition.function:has-child(function.identifier:capture(name))</selector>
+        <selector>container.function.type:has-child(identifier.function:capture(name)):capture(itemizer-firstused)</selector>
+        <subrecipes>
+            <include-root-recipes/>
+        </subrecipes>
+    </recipe>
+
+    <recipe name="org.purl.net.mkhl.haskell.itemizers.type">
+        <class>ESCodeBlockItem</class>
+        <selector>container.type:has-child(keyword.definition:capture(name))</selector>
         <subrecipes>
             <include-root-recipes/>
         </subrecipes>
@@ -24,7 +32,7 @@
 
     <recipe name="org.purl.net.mkhl.haskell.itemizers.block">
         <class>ESCodeBlockItem</class>
-        <selector>container.definition:has-child(keyword.definition:capture(name))</selector>
+        <selector>container.block:has-child(identifier.function:capture(name))</selector>
         <subrecipes>
             <include-root-recipes/>
         </subrecipes>

@@ -10,16 +10,16 @@
         <collection name="comment">
             <zone name="metadata.processing.preprocessor">
                 <expression>^\s*(#).*$\n?</expression>
-                <capture number="1" name="delimiter.other.preprocessor" />
+                <capture number="1" name="delimiter.other" />
             </zone>
             <zone name="metadata.processing.comment">
                 <starts-with>
                     <expression>\{-#</expression>
-                    <capture number="0" name="delimiter.balanced.processing.begin" />
+                    <capture number="0" name="delimiter.balanced.brace.open" />
                 </starts-with>
                 <ends-with>
                     <expression>#-\}</expression>
-                    <capture number="0" name="delimiter.balanced.processing.end" />
+                    <capture number="0" name="delimiter.balanced.brace.close" />
                 </ends-with>
                 <subzones>
                     <zone name="keyword.other.processing">
@@ -30,11 +30,11 @@
             <zone name="metadata.comment.documentation.block">
                 <starts-with>
                     <expression>\{-\|</expression>
-                    <capture number="0" name="delimiter.balanced.haddock.begin" />
+                    <capture number="0" name="delimiter.balanced.brace.open" />
                 </starts-with>
                 <ends-with>
                     <expression>-\}</expression>
-                    <capture number="0" name="delimiter.balanced.haddock.end" />
+                    <capture number="0" name="delimiter.balanced.brace.close" />
                 </ends-with>
                 <subzones>
                     <include collection="comment-contents" />
@@ -43,11 +43,11 @@
             <zone name="metadata.comment.block">
                 <starts-with>
                     <expression>\{-</expression>
-                    <capture number="0" name="delimiter.balanced.comment.begin" />
+                    <capture number="0" name="delimiter.balanced.brace.open" />
                 </starts-with>
                 <ends-with>
                     <expression>-\}</expression>
-                    <capture number="0" name="delimiter.balanced.comment.end" />
+                    <capture number="0" name="delimiter.balanced.brace.close" />
                 </ends-with>
                 <subzones>
                     <include collection="comment-contents" />
@@ -56,7 +56,7 @@
             <zone name="metadata.comment.documentation.line.prefix">
                 <starts-with>
                     <expression>-{2}\|</expression>
-                    <capture number="0" name="delimiter.other.haddock" />
+                    <capture number="0" name="delimiter.other" />
                 </starts-with>
                 <ends-with>
                     <expression>^(?!\s*-{2})</expression>
@@ -65,7 +65,7 @@
             <zone name="metadata.comment.documentation.line.postfix">
                 <starts-with>
                     <expression>-{2}\^</expression>
-                    <capture number="0" name="delimiter.other.haddock" />
+                    <capture number="0" name="delimiter.other" />
                 </starts-with>
                 <ends-with>
                     <expression>^(?!\s*-{2})</expression>
@@ -73,7 +73,7 @@
             </zone>
             <zone name="metadata.comment.line">
                 <expression>(-{2,}).*$\n?</expression>
-                <capture number="1" name="delimiter.other.comment" />
+                <capture number="1" name="delimiter.other" />
             </zone>
         </collection>
         <collection name="comment-contents">
@@ -95,6 +95,7 @@
             <include collection="type" />
             <include collection="class" />
             <include collection="instance" />
+            <include collection="default" />
             <include collection="fixity" />
         </collection>
         <collection name="module">
@@ -102,7 +103,7 @@
                 <starts-with>
                     <expression>^\s*(module)\s+([A-Z][A-Za-z_0-9'\.]*)</expression>
                     <capture number="1" name="keyword.definition.module" />
-                    <capture number="2" name="identifier.module" />
+                    <capture number="2" name="identifier.module.definition" />
                 </starts-with>
                 <ends-with>
                     <!-- Never ends; the rest of the file belongs to this module. -->
@@ -119,12 +120,12 @@
         <collection name="import">
             <zone name="container.statement.import">
                 <starts-with>
-                    <expression>^\s*(import)\b</expression>
-                    <capture number="1" name="keyword.control.import" />
+                    <expression>^(\s*)(import)\b</expression>
+                    <capture number="2" name="keyword.control.import" />
                 </starts-with>
                 <ends-with>
                     <expression>($|;)</expression>
-                    <capture number="1" name="delimiter.terminator.import" />
+                    <capture number="1" name="delimiter.terminator" />
                 </ends-with>
                 <subzones>
                     <zone name="keyword.modifier.import">
@@ -135,10 +136,10 @@
             </zone>
         </collection>
         <collection name="type">
-            <zone name="container.definition.type">
+            <zone name="container.type.data">
                 <starts-with>
                     <expression>^(\s*)(type|newtype|data)\b</expression>
-                    <capture number="2" name="keyword.definition.type" />
+                    <capture number="2" name="keyword.definition.type.data" />
                 </starts-with>
                 <ends-with>
                     <expression>^(?:$|(?!\1\s+))</expression>
@@ -149,7 +150,7 @@
             </zone>
         </collection>
         <collection name="class">
-            <zone name="container.definition.type.class">
+            <zone name="container.type.class">
                 <starts-with>
                     <expression>^(\s*)(class)\b</expression>
                     <capture number="2" name="keyword.definition.type.class" />
@@ -163,7 +164,7 @@
             </zone>
         </collection>
         <collection name="instance">
-            <zone name="container.definition.type.instance">
+            <zone name="container.type.instance">
                 <starts-with>
                     <expression>^(\s*)(instance)\b</expression>
                     <capture number="2" name="keyword.definition.type.instance" />
@@ -176,11 +177,24 @@
                 </subzones>
             </zone>
         </collection>
+        <collection name="default">
+            <zone name="container.statement.default">
+                <expression>^(\s*)(default)\s+(\()(.*)(\))\s*$\n?</expression>
+                <capture number="2" name="keyword.modifier.default" />
+                <capture number="3" name="delimiter.balanced.paren.open" />
+                <capture number="4">
+                    <subzones>
+                        <include collection="base" />
+                    </subzones>
+                </capture>
+                <capture number="5" name="delimiter.balanced.paren.close" />
+            </zone>
+        </collection>
         <collection name="fixity">
-            <zone name="container.declaration.fixity">
+            <zone name="container.statement.fixity">
                 <expression>^(\s*)(infix[rl]?)\s+(.*)$\n?</expression>
                 <capture number="2" name="keyword.modifier.fixity" />
-                <capture number="3" name="container.declaration.operator.fixity">
+                <capture number="3">
                     <subzones>
                         <include collection="base" />
                     </subzones>
@@ -223,31 +237,33 @@
         <collection name="char">
             <zone name="literal.character">
                 <expression>(')(?:(\\.)|[^'\\])(')</expression>
-                <capture number="1" name="delimiter.balanced.quote.begin" />
+                <capture number="1" name="delimiter.balanced.quote.open" />
                 <capture number="2" name="literal.escape" />
-                <capture number="3" name="delimiter.balanced.quote.end" />
+                <capture number="3" name="delimiter.balanced.quote.close" />
             </zone>
         </collection>
         <collection name="string">
             <zone name="literal.string.quoted.double">
                 <expression>(")(?:(\\.)|[^"\\])*(")</expression>
-                <capture number="1" name="delimiter.balanced.quote.begin" />
+                <capture number="1" name="delimiter.balanced.quote.open" />
                 <capture number="2" name="literal.escape" />
-                <capture number="3" name="delimiter.balanced.quote.end" />
+                <capture number="3" name="delimiter.balanced.quote.close" />
             </zone>
         </collection>
         <collection name="composite">
             <zone name="literal.collection.unit">
-                <expression>\(\)</expression>
+                <expression>(\()(\))</expression>
+                <capture number="1" name="delimiter.balanced.paren.open" />
+                <capture number="2" name="delimiter.balanced.paren.close" />
             </zone>
             <zone name="literal.collection.tuple">
                 <starts-with>
                     <expression>\(</expression>
-                    <capture number="0" name="delimiter.balanced.tuple.begin" />
+                    <capture number="0" name="delimiter.balanced.paren.open" />
                 </starts-with>
                 <ends-with>
                     <expression>\)</expression>
-                    <capture number="0" name="delimiter.balanced.tuple.end" />
+                    <capture number="0" name="delimiter.balanced.paren.close" />
                 </ends-with>
                 <subzones>
                     <zone name="delimiter.separator.tuple">
@@ -257,16 +273,18 @@
                 </subzones>
             </zone>
             <zone name="literal.collection.list.empty">
-                <expression>\[\]</expression>
+                <expression>(\[)(\])</expression>
+                <capture number="1" name="delimiter.balanced.bracket.open" />
+                <capture number="2" name="delimiter.balanced.bracket.close" />
             </zone>
             <zone name="literal.collection.list">
                 <starts-with>
                     <expression>\[</expression>
-                    <capture number="0" name="delimiter.balanced.list.begin" />
+                    <capture number="0" name="delimiter.balanced.bracket.open" />
                 </starts-with>
                 <ends-with>
                     <expression>\]</expression>
-                    <capture number="0" name="delimiter.balanced.list.end" />
+                    <capture number="0" name="delimiter.balanced.bracket.close" />
                 </ends-with>
                 <subzones>
                     <zone name="delimiter.separator.list">
@@ -278,11 +296,11 @@
             <zone name="literal.collection.record">
                 <starts-with>
                     <expression>\{</expression>
-                    <capture number="0" name="delimiter.balanced.record.begin" />
+                    <capture number="0" name="delimiter.balanced.brace.open" />
                 </starts-with>
                 <ends-with>
                     <expression>\}</expression>
-                    <capture number="0" name="delimiter.balanced.record.end" />
+                    <capture number="0" name="delimiter.balanced.brace.close" />
                 </ends-with>
                 <subzones>
                     <zone name="delimiter.separator.record">
@@ -313,66 +331,66 @@
             </zone>
         </collection>
         <collection name="function">
-            <zone name="container.declaration.function">
+            <zone name="container.function.type">
                 <starts-with>
                     <expression>^(\s*)([a-z_][A-Za-z_0-9']*)(?:\s*(,)\s*([a-z_][A-Za-z_0-9']*))*\s+(::)</expression>
                     <capture number="2" name="identifier.function" />
-                    <capture number="3" name="delimiter.separator.functions" />
+                    <capture number="3" name="delimiter.separator.function.name" />
                     <capture number="4" name="identifier.function" />
                     <capture number="5" name="delimiter.separator.function.type" />
                 </starts-with>
                 <ends-with>
-                    <expression>^(?!\1\s+)</expression>
+                    <expression>^(?:$|(?!\1\s+))</expression>
                 </ends-with>
                 <subzones>
                     <include collection="base" />
                 </subzones>
             </zone>
-            <zone name="container.definition.function">
+            <zone name="container.block.function.body">
                 <starts-with>
                     <expression>^(\s*)([a-z_][A-Za-z_0-9']*)\s+((?:(?!=|\||$).)*)(?==|\|)</expression>
                     <capture number="2" name="identifier.function" />
-                    <capture number="3" name="container.declaration.function.arguments">
+                    <capture number="3">
                         <subzones>
                             <include collection="base" />
                         </subzones>
                     </capture>
                 </starts-with>
                 <ends-with>
-                    <expression>^(?!\1\s+)</expression>
+                    <expression>^(?:$|(?!\1\s+))</expression>
                 </ends-with>
                 <subzones>
                     <include collection="base" />
                 </subzones>
             </zone>
-            <zone name="container.declaration.operator">
+            <zone name="container.function.operator.type">
                 <starts-with>
                     <!-- I won't even pretend to be able to parse mixfix declarations. -->
                     <expression>^(\s*)\(([!#\$%&amp;\*\+\./&lt;=&gt;?\@\\\^\|\-~][!#\$%&amp;\*\+\./&lt;=&gt;?\@\\\^\|\-~:]*)\)(?:\s*(,)\s*\(([!#\$%&amp;\*\+\./&lt;=&gt;?\@\\\^\|\-~][!#\$%&amp;\*\+\./&lt;=&gt;?\@\\\^\|\-~:]*)\))*\s+(::)</expression>
-                    <capture number="2" name="identifier.operator" />
-                    <capture number="3" name="delimiter.separator.functions" />
-                    <capture number="4" name="identifier.operator" />
-                    <capture number="5" name="delimiter.separator.function.type" />
+                    <capture number="2" name="identifier.function.operator" />
+                    <capture number="3" name="delimiter.separator.function.operator.name" />
+                    <capture number="4" name="identifier.function.operator" />
+                    <capture number="5" name="delimiter.separator.operator.type" />
                 </starts-with>
                 <ends-with>
-                    <expression>^(?!\1\s+)</expression>
+                    <expression>^(?:$|(?!\1\s+))</expression>
                 </ends-with>
                 <subzones>
                     <include collection="base" />
                 </subzones>
             </zone>
-            <zone name="container.definition.operator">
+            <zone name="container.block.function.operator.body">
                 <starts-with>
                     <expression>^(\s*)\(([!#\$%&amp;\*\+\./&lt;=&gt;?\@\\\^\|\-~][!#\$%&amp;\*\+\./&lt;=&gt;?\@\\\^\|\-~:]*)\)\s+((?:(?!=|\||$).)*)(?==|\|)</expression>
-                    <capture number="2" name="identifier.operator" />
-                    <capture number="3" name="container.declaration.operator.arguments">
+                    <capture number="2" name="identifier.function.operator" />
+                    <capture number="3">
                         <subzones>
                             <include collection="base" />
                         </subzones>
                     </capture>
                 </starts-with>
                 <ends-with>
-                    <expression>^(?!\1\s+)</expression>
+                    <expression>^(?:$|(?!\1\s+))</expression>
                 </ends-with>
                 <subzones>
                     <include collection="base" />
@@ -404,10 +422,10 @@
             </zone>
             <zone nam="identifier.operator.infix">
                 <expression>(`)(\b[A-Z](?:\.[A-Z]|[A-Za-z_0-9'])*\.)?([a-z_][A-Za-z_0-9']*)(`)</expression>
-                <capture number="1" name="delimiter.balanced.backtick.begin" />
+                <capture number="1" name="delimiter.balanced.backtick.open" />
                 <capture number="2" name="identifier.module" />
                 <capture number="3" name="identifier.operator" />
-                <capture number="4" name="delimiter.balanced.backtick.end" />
+                <capture number="4" name="delimiter.balanced.backtick.close" />
             </zone>
             <zone name="container.identifier.function">
                 <expression>\b([A-Z](?:\.[A-Z]|[A-Za-z_0-9'])*\.)?([a-z_][A-Za-z_0-9']*)\b</expression>
