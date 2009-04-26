@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<itemizer>
+
+    <recipe name="org.purl.net.mkhl.haskell.itemizers.comment">
+        <class>ESCommentItem</class>
+        <selector>comment</selector>
+    </recipe>
+
+    <recipe name="org.purl.net.mkhl.haskell.itemizers.module">
+        <class>ESBaseItem</class>
+        <selector>container.definition.module:has-child(module.identifier:capture(name))</selector>
+        <subrecipes>
+            <include-root-recipes/>
+        </subrecipes>
+    </recipe>
+
+    <recipe name="org.purl.net.mkhl.haskell.itemizers.function">
+        <class>ESBaseItem</class>
+        <selector>container.definition.function:has-child(function.identifier:capture(name))</selector>
+        <subrecipes>
+            <include-root-recipes/>
+        </subrecipes>
+    </recipe>
+
+    <recipe name="org.purl.net.mkhl.haskell.itemizers.block">
+        <class>ESCodeBlockItem</class>
+        <selector>container.definition:has-child(keyword.definition:capture(name))</selector>
+        <subrecipes>
+            <include-root-recipes/>
+        </subrecipes>
+    </recipe>
+
+</itemizer>
