@@ -5,12 +5,8 @@
     TODO:
     - guard
     - typedecl
-    - bind
-    - lambda
     - typedecl-func
     - typedecl-class
-    - class
-    - instance
 -->
 <!--Metadata-->
     <snippet id="org.purl.net.mkhl.haskell.snippets.shebang" category="tools.Snippets">
@@ -50,7 +46,7 @@
 	/}${2:function}${2/.+/
 ) /}where
 
-${0:definitions}]]></text>
+$0]]></text>
         <text-trigger>mod</text-trigger>
         <syntax-context>haskell, haskell *</syntax-context>
     </snippet>
@@ -135,7 +131,7 @@ ${0:definitions}]]></text>
         <title>case block</title>
         <text><![CDATA[case ${1:expression} in
 	${2:pattern} -> ${3:expression}
-	${4:otherwise} -> ${0:expression}]]></text>
+	${4:otherwise} -> ${5:expression}]]></text>
         <text-trigger>case</text-trigger>
         <syntax-context>haskell, haskell *</syntax-context>
     </snippet>
@@ -143,8 +139,8 @@ ${0:definitions}]]></text>
     <snippet id="org.purl.net.mkhl.haskell.snippets.let-block" category="tools.Snippets">
         <title>let block</title>
         <text><![CDATA[let
-		${1:x} = ${2:expression}
-	in ${0:expression}]]></text>
+		${1:name} = ${2:expression}${3:
+	in ${0:expression}}]]></text>
         <text-trigger>let</text-trigger>
         <syntax-context>haskell, haskell *</syntax-context>
     </snippet>
@@ -152,7 +148,7 @@ ${0:definitions}]]></text>
     <snippet id="org.purl.net.mkhl.haskell.snippets.where-block" category="tools.Snippets">
         <title>where block</title>
         <text><![CDATA[where
-	${1:x} = ${0:expression}]]></text>
+	${1:name} = ${0:expression}]]></text>
         <text-trigger>where</text-trigger>
         <syntax-context>haskell, haskell *</syntax-context>
     </snippet>
