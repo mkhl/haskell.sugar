@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <action-recipes>
 
-<!--
-    TODO:
-    - guard
-    - typedecl
-    - typedecl-func
-    - typedecl-class
--->
 <!--Metadata-->
     <snippet id="org.purl.net.mkhl.haskell.snippets.shebang" category="tools.Snippets">
         <title>#!…</title>
@@ -114,6 +107,47 @@ $0]]></text>
 		<text><![CDATA[instance ${1:Class} ${2:Type}${3/.+/ where
 	/}${3:definition}]]></text>
 		<text-trigger>ins</text-trigger>
+		<syntax-context>haskell, haskell *</syntax-context>
+	</snippet>
+
+<!--Functions-->
+	<snippet id="org.purl.net.mkhl.haskell.snippets.function" category="tools.Snippets">
+		<title>function</title>
+		<text><![CDATA[${2:$1 :: ${3:Type}
+}${1:name} ${4:pattern}${4/.+/ /}${5/.+/= /}${5:definition}
+]]></text>
+		<text-trigger>fun</text-trigger>
+		<syntax-context>haskell, haskell *</syntax-context>
+	</snippet>
+
+	<snippet id="org.purl.net.mkhl.haskell.snippets.signature" category="tools.Snippets">
+		<title>type signature</title>
+		<text><![CDATA[${1:name} :: ${0:Type}
+]]></text>
+		<text-trigger>::</text-trigger>
+		<syntax-context>haskell, haskell *</syntax-context>
+	</snippet>
+
+	<snippet id="org.purl.net.mkhl.haskell.snippets.constraint" category="hide">
+		<title>type constraint</title>
+		<text><![CDATA[(${0:Class}) => ]]></text>
+		<text-trigger>=</text-trigger>
+		<syntax-context>haskell container.type, haskell container.type *</syntax-context>
+	</snippet>
+
+	<snippet id="org.purl.net.mkhl.haskell.snippets.definition" category="hide">
+		<title>definition</title>
+		<text><![CDATA[${1:name} ${2:pattern}${2/.+/ /}= ${0:definition}
+]]></text>
+		<text-trigger>=</text-trigger>
+		<syntax-context>haskell, haskell *</syntax-context>
+	</snippet>
+
+	<snippet id="org.purl.net.mkhl.haskell.snippets.guard" category="hide">
+		<title>Guard</title>
+		<text><![CDATA[| ${1:predicate} = ${0:definition}
+]]></text>
+		<text-trigger>|</text-trigger>
 		<syntax-context>haskell, haskell *</syntax-context>
 	</snippet>
 
