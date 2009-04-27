@@ -15,6 +15,7 @@
     - newtype
     - data
 -->
+<!--Metadata-->
     <snippet id="org.purl.net.mkhl.haskell.snippets.shebang" category="tools.Snippets">
         <title>#!…</title>
         <text><![CDATA[#!/usr/bin/env ${1:runhaskell}
@@ -23,10 +24,33 @@
         <syntax-context>haskell, haskell *</syntax-context>
     </snippet>
 
+	<snippet id="org.purl.net.mkhl.haskell.snippets.haddock.prefix.block" category="tools.Snippets">
+		<title>Haddock comment (block)</title>
+		<text><![CDATA[{-| ${0:documentation}
+-}]]></text>
+		<text-trigger>{-|</text-trigger>
+		<syntax-context>haskell, haskell *</syntax-context>
+	</snippet>
+
+	<snippet id="org.purl.net.mkhl.haskell.snippets.haddock.prefix.line" category="tools.Snippets">
+		<title>Haddock comment (prefix)</title>
+		<text><![CDATA[--| ${0:documentation}]]></text>
+		<text-trigger>--|</text-trigger>
+		<syntax-context>haskell, haskell *</syntax-context>
+	</snippet>
+
+	<snippet id="org.purl.net.mkhl.haskell.snippets.haddock.postfix.line" category="tools.Snippets">
+		<title>Haddock comment (postfix)</title>
+		<text><![CDATA[--^ ${0:documentation}]]></text>
+		<text-trigger>--^</text-trigger>
+		<syntax-context>haskell, haskell *</syntax-context>
+	</snippet>
+
+<!--Module structure-->
     <snippet id="org.purl.net.mkhl.haskell.snippets.module" category="tools.Snippets">
         <title>module</title>
         <text><![CDATA[module ${1:Main} ${2/.+/(
-	/}${2:main}${2/.+/
+	/}${2:function}${2/.+/
 ) /}where
 
 ${0:definitions}]]></text>
@@ -55,6 +79,7 @@ ${0:definitions}]]></text>
 	    <syntax-context>haskell, haskell *</syntax-context>
 	</snippet>
 
+<!--Code blocks-->
     <snippet id="org.purl.net.mkhl.haskell.snippets.if-block" category="tools.Snippets">
         <title>if block</title>
         <text><![CDATA[if ${1:condition}
