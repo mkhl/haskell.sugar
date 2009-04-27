@@ -224,4 +224,14 @@ ${1:name} ${3:pattern}${3/.+/ /}${4/.+/= /}${4:definition}
 		<syntax-context>haskell, haskell *</syntax-context>
 	</snippet>
 
+	<snippet id="org.purl.net.mkhl.haskell.snippets.main" category="hide">
+		<title>Main</title>
+		<text><![CDATA[module Main where
+main :: IO ()
+main = ${0:definition
+}]]></text>
+		<text-trigger>main</text-trigger>
+		<syntax-context>haskell, haskell *</syntax-context>
+	</snippet>
+
 </action-recipes>
