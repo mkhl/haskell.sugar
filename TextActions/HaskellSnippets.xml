@@ -219,7 +219,7 @@ $0]]></text>
 
 	<snippet id="org.purl.net.mkhl.haskell.snippets.list-comprehension" category="hide">
 		<title>List Comprehension</title>
-		<text><![CDATA[[ ${1:name} | $1 <- ${2:expression}#{3/.+/, /}${3:condition} ]]></text>
+		<text><![CDATA[[ ${1:expression} | ${2:name} <- ${3:expression}${4/.+/, /}${4:condition} ]]></text>
 		<text-trigger>[</text-trigger>
 		<syntax-context>haskell, haskell *</syntax-context>
 	</snippet>
