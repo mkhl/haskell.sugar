@@ -21,7 +21,7 @@
         <syntax-context>haskell, haskell *</syntax-context>
     </snippet>
 
-	<snippet id="org.purl.net.mkhl.haskell.snippets.haddock.prefix.block" category="tools.Snippets">
+	<snippet id="org.purl.net.mkhl.haskell.snippets.haddock.prefix.block" category="hide">
 		<title>Haddock comment (block)</title>
 		<text><![CDATA[{-| ${0:documentation}
 -}]]></text>
@@ -29,14 +29,14 @@
 		<syntax-context>haskell, haskell *</syntax-context>
 	</snippet>
 
-	<snippet id="org.purl.net.mkhl.haskell.snippets.haddock.prefix.line" category="tools.Snippets">
+	<snippet id="org.purl.net.mkhl.haskell.snippets.haddock.prefix.line" category="hide">
 		<title>Haddock comment (prefix)</title>
 		<text><![CDATA[--| ${0:documentation}]]></text>
 		<text-trigger>--|</text-trigger>
 		<syntax-context>haskell, haskell *</syntax-context>
 	</snippet>
 
-	<snippet id="org.purl.net.mkhl.haskell.snippets.haddock.postfix.line" category="tools.Snippets">
+	<snippet id="org.purl.net.mkhl.haskell.snippets.haddock.postfix.line" category="hide">
 		<title>Haddock comment (postfix)</title>
 		<text><![CDATA[--^ ${0:documentation}]]></text>
 		<text-trigger>--^</text-trigger>
