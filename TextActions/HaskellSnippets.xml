@@ -14,11 +14,11 @@
     - type
     - newtype
     - data
-    - import
 -->
     <snippet id="org.purl.net.mkhl.haskell.snippets.shebang" category="tools.Snippets">
         <title>#!…</title>
-        <text><![CDATA[#!/usr/bin/env ${1:runhaskell}]]></text>
+        <text><![CDATA[#!/usr/bin/env ${1:runhaskell}
+]]></text>
         <text-trigger>#!</text-trigger>
         <syntax-context>haskell, haskell *</syntax-context>
     </snippet>
@@ -33,6 +33,27 @@ ${0:definitions}]]></text>
         <text-trigger>mod</text-trigger>
         <syntax-context>haskell, haskell *</syntax-context>
     </snippet>
+
+	<snippet id="org.purl.net.mkhl.haskell.snippets.import.default" category="tools.Snippets">
+	    <title>import</title>
+	    <text><![CDATA[import ${1:Module}${2/.+/ (/}${2:function}${2/.+/)/}]]></text>
+	    <text-trigger>imp</text-trigger>
+	    <syntax-context>haskell, haskell *</syntax-context>
+	</snippet>
+
+	<snippet id="org.purl.net.mkhl.haskell.snippets.import.hiding" category="hide">
+	    <title>import</title>
+	    <text><![CDATA[import ${1:Module}${2/.+/ hiding (/}${2:function}${2/.+/)/}]]></text>
+	    <text-trigger>imph</text-trigger>
+	    <syntax-context>haskell, haskell *</syntax-context>
+	</snippet>
+
+	<snippet id="org.purl.net.mkhl.haskell.snippets.import.qualified" category="hide">
+	    <title>import</title>
+	    <text><![CDATA[import qualified ${1:Module}${2/.+/ as /}${2:Mod}${2/.+/ /}${3/.+/ (/}${3:function}${3/.+/)/}]]></text>
+	    <text-trigger>impq</text-trigger>
+	    <syntax-context>haskell, haskell *</syntax-context>
+	</snippet>
 
     <snippet id="org.purl.net.mkhl.haskell.snippets.if-block" category="tools.Snippets">
         <title>if block</title>
