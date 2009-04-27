@@ -2,7 +2,7 @@
 <action-recipes>
 
 <!--Metadata-->
-    <snippet id="org.purl.net.mkhl.haskell.snippets.shebang" category="hide">
+    <snippet id="org.purl.net.mkhl.haskell.snippets.shebang" category="hidden">
         <title>#!…</title>
         <text><![CDATA[#!/usr/bin/env ${1:runhaskell}
 ]]></text>
@@ -10,7 +10,7 @@
         <syntax-context>haskell, haskell *</syntax-context>
     </snippet>
 
-	<snippet id="org.purl.net.mkhl.haskell.snippets.haddock.prefix.block" category="hide">
+	<snippet id="org.purl.net.mkhl.haskell.snippets.haddock.prefix.block" category="hidden">
 		<title>Haddock comment (block)</title>
 		<text><![CDATA[{-| ${0:documentation}
 -}]]></text>
@@ -18,14 +18,14 @@
 		<syntax-context>haskell, haskell *</syntax-context>
 	</snippet>
 
-	<snippet id="org.purl.net.mkhl.haskell.snippets.haddock.prefix.line" category="hide">
+	<snippet id="org.purl.net.mkhl.haskell.snippets.haddock.prefix.line" category="hidden">
 		<title>Haddock comment (prefix)</title>
 		<text><![CDATA[--| ${0:documentation}]]></text>
 		<text-trigger>--|</text-trigger>
 		<syntax-context>haskell, haskell *</syntax-context>
 	</snippet>
 
-	<snippet id="org.purl.net.mkhl.haskell.snippets.haddock.postfix.line" category="hide">
+	<snippet id="org.purl.net.mkhl.haskell.snippets.haddock.postfix.line" category="hidden">
 		<title>Haddock comment (postfix)</title>
 		<text><![CDATA[--^ ${0:documentation}]]></text>
 		<text-trigger>--^</text-trigger>
@@ -51,14 +51,14 @@ $0]]></text>
 	    <syntax-context>haskell, haskell *</syntax-context>
 	</snippet>
 
-	<snippet id="org.purl.net.mkhl.haskell.snippets.import.hiding" category="hide">
+	<snippet id="org.purl.net.mkhl.haskell.snippets.import.hiding" category="hidden">
 	    <title>Import (hiding)</title>
 	    <text><![CDATA[import ${1:Module}${2/.+/ hiding (/}${2:function}${2/.+/)/}]]></text>
 	    <text-trigger>imph</text-trigger>
 	    <syntax-context>haskell, haskell *</syntax-context>
 	</snippet>
 
-	<snippet id="org.purl.net.mkhl.haskell.snippets.import.qualified" category="hide">
+	<snippet id="org.purl.net.mkhl.haskell.snippets.import.qualified" category="hidden">
 	    <title>Import (qualified)</title>
 	    <text><![CDATA[import qualified ${1:Module}${2/.+/ as /}${2:Mod}${2/.+/ /}${3/.+/ (/}${3:function}${3/.+/)/}]]></text>
 	    <text-trigger>impq</text-trigger>
@@ -87,7 +87,7 @@ $0]]></text>
 		<syntax-context>haskell, haskell *</syntax-context>
 	</snippet>
 
-	<snippet id="org.purl.net.mkhl.haskell.snippets.deriving" category="hide">
+	<snippet id="org.purl.net.mkhl.haskell.snippets.deriving" category="hidden">
 		<title>deriving</title>
 		<text><![CDATA[deriving (${1:Class})]]></text>
 		<text-trigger>der</text-trigger>
@@ -128,14 +128,14 @@ ${1:name} ${3:pattern}${3/.+/ /}${4/.+/= /}${4:definition}
 		<syntax-context>haskell, haskell *</syntax-context>
 	</snippet>
 
-	<snippet id="org.purl.net.mkhl.haskell.snippets.constraint" category="hide">
+	<snippet id="org.purl.net.mkhl.haskell.snippets.constraint" category="hidden">
 		<title>Type Constraint</title>
 		<text><![CDATA[(${0:Class}) => ]]></text>
 		<text-trigger>=</text-trigger>
 		<syntax-context>haskell container.type, haskell container.type *</syntax-context>
 	</snippet>
 
-	<snippet id="org.purl.net.mkhl.haskell.snippets.definition" category="hide">
+	<snippet id="org.purl.net.mkhl.haskell.snippets.definition" category="hidden">
 		<title>Definition</title>
 		<text><![CDATA[${1:name} ${2:pattern}${2/.+/ /}= ${0:definition}
 ]]></text>
@@ -143,7 +143,7 @@ ${1:name} ${3:pattern}${3/.+/ /}${4/.+/= /}${4:definition}
 		<syntax-context>haskell, haskell *</syntax-context>
 	</snippet>
 
-	<snippet id="org.purl.net.mkhl.haskell.snippets.guard" category="hide">
+	<snippet id="org.purl.net.mkhl.haskell.snippets.guard" category="hidden">
 		<title>Guard</title>
 		<text><![CDATA[| ${1:predicate} = ${0:definition}
 ]]></text>
@@ -152,7 +152,7 @@ ${1:name} ${3:pattern}${3/.+/ /}${4/.+/= /}${4:definition}
 	</snippet>
 
 <!--Code blocks-->
-    <snippet id="org.purl.net.mkhl.haskell.snippets.if-block" category="hide">
+    <snippet id="org.purl.net.mkhl.haskell.snippets.if-block" category="hidden">
         <title>If …</title>
         <text><![CDATA[if ${1:condition}
 	then ${2:expression}
@@ -161,7 +161,7 @@ ${1:name} ${3:pattern}${3/.+/ /}${4/.+/= /}${4:definition}
         <syntax-context>haskell, haskell *</syntax-context>
     </snippet>
 
-    <snippet id="org.purl.net.mkhl.haskell.snippets.case-block" category="hide">
+    <snippet id="org.purl.net.mkhl.haskell.snippets.case-block" category="hidden">
         <title>Case …</title>
         <text><![CDATA[case ${1:expression} in
 	${2:pattern} -> ${3:expression}
@@ -170,7 +170,7 @@ ${1:name} ${3:pattern}${3/.+/ /}${4/.+/= /}${4:definition}
         <syntax-context>haskell, haskell *</syntax-context>
     </snippet>
 
-    <snippet id="org.purl.net.mkhl.haskell.snippets.let-block" category="hide">
+    <snippet id="org.purl.net.mkhl.haskell.snippets.let-block" category="hidden">
         <title>Let …</title>
         <text><![CDATA[let
 		${1:name} = ${2:expression}${3:
@@ -179,7 +179,7 @@ ${1:name} ${3:pattern}${3/.+/ /}${4/.+/= /}${4:definition}
         <syntax-context>haskell, haskell *</syntax-context>
     </snippet>
 
-    <snippet id="org.purl.net.mkhl.haskell.snippets.where-block" category="hide">
+    <snippet id="org.purl.net.mkhl.haskell.snippets.where-block" category="hidden">
         <title>Where …</title>
         <text><![CDATA[where
 	${1:name} = ${0:expression}]]></text>
@@ -187,7 +187,7 @@ ${1:name} ${3:pattern}${3/.+/ /}${4/.+/= /}${4:definition}
         <syntax-context>haskell, haskell *</syntax-context>
     </snippet>
 
-    <snippet id="org.purl.net.mkhl.haskell.snippets.do-block" category="hide">
+    <snippet id="org.purl.net.mkhl.haskell.snippets.do-block" category="hidden">
         <title>Do …</title>
         <text><![CDATA[do
 	${1:return ${0:expression}}]]></text>
@@ -196,35 +196,35 @@ ${1:name} ${3:pattern}${3/.+/ /}${4/.+/= /}${4:definition}
     </snippet>
 
 <!--Miscellaneous-->
-	<snippet id="org.purl.net.mkhl.haskell.snippets.lambda-expression" category="hide">
+	<snippet id="org.purl.net.mkhl.haskell.snippets.lambda-expression" category="hidden">
 		<title>Lambda Expression</title>
 		<text><![CDATA[\ ${1:name} -> ${0:expression]]></text>
 		<text-trigger>\</text-trigger>
 		<syntax-context>haskell, haskell *</syntax-context>
 	</snippet>
 
-	<snippet id="org.purl.net.mkhl.haskell.snippets.arrow-left" category="hide">
+	<snippet id="org.purl.net.mkhl.haskell.snippets.arrow-left" category="hidden">
 		<title>left arrow</title>
 		<text><![CDATA[${1:name} <- ${0:expression]]></text>
 		<text-trigger>&lt;</text-trigger>
 		<syntax-context>haskell, haskell *</syntax-context>
 	</snippet>
 
-	<snippet id="org.purl.net.mkhl.haskell.snippets.arrow-right" category="hide">
+	<snippet id="org.purl.net.mkhl.haskell.snippets.arrow-right" category="hidden">
 		<title>right arrow</title>
 		<text><![CDATA[${1:expression} -> ${0:expression]]></text>
 		<text-trigger>></text-trigger>
 		<syntax-context>haskell, haskell *</syntax-context>
 	</snippet>
 
-	<snippet id="org.purl.net.mkhl.haskell.snippets.list-comprehension" category="hide">
+	<snippet id="org.purl.net.mkhl.haskell.snippets.list-comprehension" category="hidden">
 		<title>List Comprehension</title>
 		<text><![CDATA[[ ${1:expression} | ${2:name} <- ${3:expression}${4/.+/, /}${4:condition} ]]></text>
 		<text-trigger>[</text-trigger>
 		<syntax-context>haskell collection.list, haskell collection.list *</syntax-context>
 	</snippet>
 
-	<snippet id="org.purl.net.mkhl.haskell.snippets.main" category="hide">
+	<snippet id="org.purl.net.mkhl.haskell.snippets.main" category="hidden">
 		<title>Main</title>
 		<text><![CDATA[module Main where
 main :: IO ()
