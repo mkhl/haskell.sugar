@@ -11,9 +11,6 @@
     - typedecl-class
     - class
     - instance
-    - type
-    - newtype
-    - data
 -->
 <!--Metadata-->
     <snippet id="org.purl.net.mkhl.haskell.snippets.shebang" category="tools.Snippets">
@@ -77,6 +74,51 @@ ${0:definitions}]]></text>
 	    <text><![CDATA[import qualified ${1:Module}${2/.+/ as /}${2:Mod}${2/.+/ /}${3/.+/ (/}${3:function}${3/.+/)/}]]></text>
 	    <text-trigger>impq</text-trigger>
 	    <syntax-context>haskell, haskell *</syntax-context>
+	</snippet>
+
+<!--Datatypes-->
+	<snippet id="org.purl.net.mkhl.haskell.snippets.type" category="tools.Snippets">
+		<title>type</title>
+		<text><![CDATA[type ${1:Type} = ${2:Other}]]></text>
+		<text-trigger>typ</text-trigger>
+		<syntax-context>haskell, haskell *</syntax-context>
+	</snippet>
+
+	<snippet id="org.purl.net.mkhl.haskell.snippets.newtype" category="tools.Snippets">
+		<title>newtype</title>
+		<text><![CDATA[newtype ${1:Type} = ${2:Other}]]></text>
+		<text-trigger>new</text-trigger>
+		<syntax-context>haskell, haskell *</syntax-context>
+	</snippet>
+
+	<snippet id="org.purl.net.mkhl.haskell.snippets.data" category="tools.Snippets">
+		<title>data</title>
+		<text><![CDATA[data ${1:Type} = ${2:Other}]]></text>
+		<text-trigger>dat</text-trigger>
+		<syntax-context>haskell, haskell *</syntax-context>
+	</snippet>
+
+	<snippet id="org.purl.net.mkhl.haskell.snippets.deriving" category="tools.Snippets">
+		<title>deriving</title>
+		<text><![CDATA[deriving (${1:Class})]]></text>
+		<text-trigger>der</text-trigger>
+		<syntax-context>haskell container.type.data, haskell container.type.data *</syntax-context>
+	</snippet>
+
+	<snippet id="org.purl.net.mkhl.haskell.snippets.class" category="tools.Snippets">
+		<title>class</title>
+		<text><![CDATA[class ${1:Class}${2/.+/ where
+	/}${2:definition}]]></text>
+		<text-trigger>cla</text-trigger>
+		<syntax-context>haskell, haskell *</syntax-context>
+	</snippet>
+
+	<snippet id="org.purl.net.mkhl.haskell.snippets.instance" category="tools.Snippets">
+		<title>instance</title>
+		<text><![CDATA[instance ${1:Class} ${2:Type}${3/.+/ where
+	/}${3:definition}]]></text>
+		<text-trigger>ins</text-trigger>
+		<syntax-context>haskell, haskell *</syntax-context>
 	</snippet>
 
 <!--Code blocks-->
