@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <action-recipes>
 
+<!-- Auto-Pairs -->
     <snippet id="org.purl.net.mkhl.haskell.actions.OpenParen" category="hidden">
         <title>Open Parenthesized Block</title>
         <text-trigger key-equivalent="("></text-trigger>
