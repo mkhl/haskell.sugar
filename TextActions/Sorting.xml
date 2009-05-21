@@ -2,7 +2,12 @@
 <action-sort-instructions>
 
 	<sort-template>
-		<selector>actions.text.Haskell</selector>
+		<selector>haskell.tools.Snippets.meta</selector>
+		<selector>haskell.tools.Snippets.modules</selector>
+		<selector>haskell.tools.Snippets.types</selector>
+		<selector>haskell.tools.Snippets.functions</selector>
+		<selector>haskell.tools.Snippets.blocks</selector>
+		<selector>haskell.tools.Snippets.misc</selector>
 	</sort-template>
 
 </action-sort-instructions>

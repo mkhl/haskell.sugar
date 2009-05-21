@@ -224,7 +224,7 @@ ${1:name} ${3:pattern}${3/.+/ /}${4/.+/= /}${4:definition}
 		<syntax-context>haskell collection.list, haskell collection.list *</syntax-context>
 	</snippet>
 
-	<snippet id="org.purl.net.mkhl.haskell.snippets.main" category="actions.text.Haskell/haskell.tools.Snippets.function">
+	<snippet id="org.purl.net.mkhl.haskell.snippets.main" category="actions.text.Haskell/haskell.tools.Snippets.misc">
 		<title>Main</title>
 		<text><![CDATA[module Main where
 

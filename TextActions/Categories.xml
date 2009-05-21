@@ -5,11 +5,11 @@
 		<title>Haskell</title>
 	</category>
     
-	<category id="haskell.tools.Snippets" show="inline separated"></category>
 	<category id="haskell.tools.Snippets.meta" show="inline separated"></category>
 	<category id="haskell.tools.Snippets.modules" show="inline separated"></category>
 	<category id="haskell.tools.Snippets.types" show="inline separated"></category>
 	<category id="haskell.tools.Snippets.functions" show="inline separated"></category>
 	<category id="haskell.tools.Snippets.blocks" show="inline separated"></category>
 	<category id="haskell.tools.Snippets.misc" show="inline separated"></category>
+
 </action-categories>
