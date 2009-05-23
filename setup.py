@@ -48,6 +48,7 @@ setup(
 			plist = dict(
 				CFBundleVersion = '0.0',
 				CFBundleIdentifier = 'org.purl.net.mkhl.haskell',
+				CFBundleGetInfoString = u'Haskell sugar for Espresso v0.0α',
 				NSHumanReadableCopyright = u'(c) 2009 Martin Kühl. Released under the MIT license.',
 			),
 		),
