@@ -7,32 +7,32 @@
     </recipe>
 
     <recipe name="org.purl.net.mkhl.haskell.itemizers.module">
-        <class>ESCodeBlockItem</class>
+        <class>HaskellModuleItem</class>
         <selector>container.module:has-child(identifier.module:capture(name))</selector>
         <subrecipes>
             <include-root-recipes/>
         </subrecipes>
     </recipe>
 
-    <recipe name="org.purl.net.mkhl.haskell.itemizers.function">
-        <class>ESBaseItem</class>
-        <selector>container.function.type:has-child(identifier.function:capture(name)):capture(itemizer-firstused)</selector>
-        <subrecipes>
-            <include-root-recipes/>
-        </subrecipes>
-    </recipe>
-
     <recipe name="org.purl.net.mkhl.haskell.itemizers.type">
-        <class>ESCodeBlockItem</class>
+        <class>HaskellTypeItem</class>
         <selector>container.type:has-child(keyword.definition:capture(name))</selector>
         <subrecipes>
             <include-root-recipes/>
         </subrecipes>
     </recipe>
 
+    <recipe name="org.purl.net.mkhl.haskell.itemizers.function">
+        <class>HaskellFunctionItem</class>
+        <selector>container.function.type:has-child(identifier.function:capture(name)):capture(itemizer-firstused)</selector>
+        <subrecipes>
+            <include-root-recipes/>
+        </subrecipes>
+    </recipe>
+
     <recipe name="org.purl.net.mkhl.haskell.itemizers.block">
-        <class>ESCodeBlockItem</class>
-        <selector>container.block:has-child(identifier.function:capture(name))</selector>
+        <class>HaskellCodeBlockItem</class>
+        <selector>container.block</selector>
         <subrecipes>
             <include-root-recipes/>
         </subrecipes>
