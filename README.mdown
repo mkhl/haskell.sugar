@@ -32,6 +32,12 @@ versions.
 
 ## License
 
-This sugar is released under the MIT License. See [`LICENSE`][license] for details.
+This sugar is released under the MIT License. See [`LICENSE`][license] for
+details.
+
+Images in the `res` folder are from the [Silk icon set by Mark James][silk]
+and released under a [Creative Commons Attribution 2.5 License][cc-by].
 
 [license]: http://github.com/mkhl/haskell.sugar/raw/master/LICENSE
+[silk]: http://www.famfamfam.com/lab/icons/silk/
+[cc-by]: http://creativecommons.org/licenses/by/2.5
