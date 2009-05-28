@@ -35,7 +35,7 @@ class HaskellTypeItem(objc.lookUpClass('ESBaseItem')):
 		return True
 	
 	def title(self):
-		return self.text().strip()
+		return self.text().lstrip()
 	
 
 class HaskellFunctionItem(objc.lookUpClass('ESBaseItem')):
@@ -49,6 +49,6 @@ class HaskellCodeBlockItem(objc.lookUpClass('ESCodeBlockItem')):
 		return True
 	
 	def title(self):
-		return '%s %s' % (u'{…}', self.text().strip())
+		return '%s %s' % (u'{…}', self.text().lstrip())
 		
 	
