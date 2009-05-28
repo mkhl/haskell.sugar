@@ -5,9 +5,12 @@ from Foundation import objc
 from Foundation import NSBundle
 from AppKit import NSImage
 
-def iconForName(klass, name):
+haskellBundleIdentifier = 'org.purl.net.mkhl.haskell'
+
+def iconForName(name):
 	"""Return the NSImage instance representing a `name` item."""
-	imgpath = NSBundle.bundleForClass_(klass).pathForResource_ofType_(name, 'png')
+	bundle = NSBundle.bundleWithIdentifier_(haskellBundleIdentifier)
+	imgpath = bundle.pathForResource_ofType_(name, 'png')
 	img = NSImage.alloc().initWithContentsOfFile_(imgpath)
 	img.autorelease()
 	return img
@@ -19,7 +22,7 @@ class HaskellModuleItem(objc.lookUpClass('ESBaseItem')):
 		return True
 	
 	def image(self):
-		return iconForName(self.class__(), 'module')
+		return iconForName('module')
 	
 
 class HaskellTypeItem(objc.lookUpClass('ESBaseItem')):
@@ -29,7 +32,7 @@ class HaskellTypeItem(objc.lookUpClass('ESBaseItem')):
 		return True
 	
 	def image(self):
-		return iconForName(self.class__(), 'type')
+		return iconForName('type')
 	
 	def isTextualizer(self):
 		return True
