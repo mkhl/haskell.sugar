@@ -1,64 +1,64 @@
 /*
-	@theme Haskell Placeholder
-	@placeholder haskell
+    @theme Haskell Placeholder
+    @placeholder haskell
 */
 
 haskell {
-	spell-check: disabled;
+    spell-check: disabled;
 }
 
 haskell delimiter {
-	color: #7f7f7f;
+    color: #7f7f7f;
 }
 
 haskell comment {
-	color: #bbb;
-	font-style: normal;
+    color: #bbb;
+    font-style: normal;
 }
 
 haskell processing, haskell comment.documentation {
-	color: #bbb;
-	font-style: italic;
+    color: #bbb;
+    font-style: italic;
 }
 
 haskell keyword.control, haskell keyword.modifier, haskell keyword.definition {
-	color: #6700b9;
+    color: #6700b9;
 }
 
 haskell literal.numeric, haskell.literal.character {
-	color: #7653c1;
-	background-color: #f3f2ff;
+    color: #7653c1;
+    background-color: #f3f2ff;
 }
 
 haskell string {
-	color: #bc670f;
-	background-color: rgba(251,233,173,0.1);
+    color: #bc670f;
+    background-color: rgba(251,233,173,0.1);
 }
 
 haskell operator {
-	color: #626fc9;
+    color: #626fc9;
 }
 
 haskell identifier.constant {
-	color: #7653c1;
-	background-color: #f3f2ff;
+    color: #7653c1;
+    background-color: #f3f2ff;
 }
 
 haskell identifier.module {
-	color: #699d36;
-	font-weight: bold;
+    color: #699d36;
+    font-weight: bold;
 }
 
 haskell identifier.type {
-	color: #6700b9;
-	font-weight: bold;
+    color: #6700b9;
+    font-weight: bold;
 }
 
 haskell identifier.function, haskell identifier.operator {
-	color: #3a1d72;
-	font-weight: bold;
+    color: #3a1d72;
+    font-weight: bold;
 }
 
 haskell identifier.variable {
-	color: #7b8c4d;
+    color: #7b8c4d;
 }
